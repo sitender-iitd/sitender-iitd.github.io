@@ -1,0 +1,241 @@
+/* General styles */
+body {
+  background: #121212; /* Dark background color */
+  font-family: "Arial", sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* Wrapper for main content and footer */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Animated Gradient Background */
+body {
+  background: linear-gradient(
+    270deg,
+    #1a0577,
+    #4e006d,
+    #ff00cc,
+    #3333cc,
+    #4e006d,
+    #1a0577
+  );
+  animation: animateGradient 5s ease infinite;
+  background-size: 600% 600%;
+}
+
+@keyframes animateGradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Main container */
+main {
+  flex: 1; /* Take remaining vertical space */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  background: transparent;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+/* Header styles */
+header {
+  border-radius: 20px;
+  background: rgba(7, 215, 252, 0.3); /* Semi-transparent black */
+  color: white;
+  padding: 10px 0;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Sections */
+.intro,
+.about-me,
+.social-media-box,
+.more-social-media,
+.contact-form {
+  width: 100%;
+  max-width: 800px; /* Adjusted max-width for better readability */
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+  padding: 20px;
+  margin: 20px auto; /* Center horizontally */
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease both;
+}
+
+.intro {
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+}
+
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+p,
+label {
+  color: #666;
+}
+
+/* Feedback form */
+.contact-form {
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center form items horizontally */
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form textarea {
+  height: 150px;
+}
+
+.submit-btn {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #0056b3, #003d6b);
+}
+
+/* Social media boxes */
+.social-media-box,
+.more-social-media {
+  background: rgba(255, 255, 255, 0.9); /* Light semi-transparent background */
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-icons,
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icon,
+.footer-social .social-icon {
+  font-size: 32px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover,
+.footer-social .social-icon:hover {
+  color: #007bff;
+}
+
+/* Footer */
+footer {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Image Section */
+.image-section {
+  width: 100%;
+  background: linear-gradient(to bottom right, #f06c15, #f68d2e);
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
+}
+
+.image-section h3 {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.image-section p {
+  color: white;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+.about-me .container {
+  max-width: 600px; /* Adjust the maximum width as per your design */
+  margin: auto; /* Center align the container */
+  text-align: center; /* Center align the content inside */
+}
+.about-me img {
+  max-width: 100%; /* Ensure the image does not exceed its container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove any default inline spacing */
+  margin: auto; /* Center align the image within its container */
+}
