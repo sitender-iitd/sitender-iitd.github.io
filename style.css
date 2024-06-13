@@ -8,19 +8,15 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(
-    270deg,
+    135deg,
     #1a0577,
-    #4e006d,
-    #ff00cc,
-    #3333cc,
-    #4e006d,
-    #1a0577
-  ); /* Animated Gradient Background */
+    #4e006d
+  ); /* Gradient Background */
   color: #fff;
   line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
   padding-top: 80px; /* Add padding to avoid overlapping with header */
   position: relative; /* Ensure relative positioning for z-index usage */
-  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Dark Mode */
@@ -109,21 +105,21 @@ nav ul li:hover > ul {
 
 /* Main Content Styles */
 main {
-  padding: 20px; /* Adjusted padding for better mobile experience */
+  padding: 40px;
 }
 
 .intro {
   background: linear-gradient(135deg, #ff00cc, #3333cc); /* Vibrant gradient */
   color: #fff;
   text-align: center;
-  padding: 40px 20px; /* Increased padding for better readability */
+  padding: 60px 20px;
   border-radius: 10px;
   margin-bottom: 40px;
   animation: fadeIn 1s ease-out;
 }
 
 .intro h2 {
-  font-size: 2.2em; /* Adjusted font size for mobile */
+  font-size: 2.5em;
   margin-bottom: 20px;
 }
 
@@ -156,7 +152,7 @@ main {
 }
 
 .subject h4 {
-  font-size: 1.8em; /* Adjusted font size for mobile */
+  font-size: 2em;
   margin-bottom: 10px;
 }
 
@@ -259,18 +255,112 @@ footer {
     text-shadow: 0 0 10px #e50914, 0 0 20px #e50914, 0 0 30px #e50914; /* Animated text shadow */
   }
 }
-body {
-  background: linear-gradient(
-    270deg,
-    #1a0577,
-    #4e006d,
-    #ff00cc,
-    #3333cc,
-    #4e006d,
-    #1a0577
-  );
-  animation: animateGradient 5s ease infinite;
-  background-size: 600% 600%;
+
+/* Dark Mode Toggle Styles */
+.switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1100;
+  transition: transform 0.3s;
+}
+
+.switch-label span {
+  font-size: 0.8em;
+  margin-right: 5px;
+}
+
+.switch-input {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider .slider-handle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider .slider-handle:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.slider input:checked + .slider-handle {
+  background-color: #e50914;
+}
+
+.slider input:checked + .slider-handle:before {
+  transform: translateX(20px);
+}
+
+/* Additional Animations */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.3s, opacity 0.3s;
+  }
 }
 
 @keyframes animateGradient {
@@ -283,6 +373,21 @@ body {
   }
 }
 
+/* Animated Gradient Background */
+body {
+  background: linear-gradient(
+    270deg,
+    #1a0577,
+    #4e006d,
+    #ff00cc,
+    #3333cc,
+    #4e006d,
+    #1a0577
+  );
+  background-size: 600% 600%;
+  animation: animateGradient 10s ease infinite;
+}
+
 /* Animation on hover */
 .subject:hover {
   transform: translateY(-5px) scale(1.02);
@@ -290,35 +395,10 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .subject {
-    flex: 1 1 45%; /* Adjusted for medium-sized screens */
-  }
-}
-
 @media (max-width: 768px) {
   .subject {
-    flex: 1 1 100%; /* Full width on smaller screens */
+    flex: 1 1 100%;
   }
-}
-
-/* Dark Mode Toggle Button */
-.dark-mode-toggle {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1000;
-  cursor: pointer;
-  background-color: #fff;
-  color: #333;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 /* Dark Mode Toggle Button */
