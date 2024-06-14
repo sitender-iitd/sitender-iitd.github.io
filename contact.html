@@ -77,38 +77,6 @@
         </div>
       </section>
 
-      <section class="social-media-box">
-        <div class="container">
-          <h2>Connect With Me</h2>
-          <div class="social-icons">
-            <a
-              href="https://www.instagram.com/sitendernarwal/"
-              class="social-icon"
-              target="_blank"
-            >
-              <i class="fab fa-instagram"></i>
-              instagram
-            </a>
-            <a
-              href="https://in.linkedin.com/in/sitendernarwal"
-              class="social-icon"
-              target="_blank"
-            >
-              <i class="fab fa-linkedin"></i>
-              linkedin
-            </a>
-            <a
-              href="https://www.facebook.com/sitender.narwal.39"
-              class="social-icon"
-              target="_blank"
-            >
-              <i class="fab fa-facebook"></i>
-              facebook
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section class="contact-form">
         <div class="container">
           <h2>Feedback Form</h2>
@@ -158,7 +126,7 @@
             <i class="fab fa-twitter"></i>
           </a>
           <a
-            href="https://www.instagram.com/your-instagram-profile"
+            href="https://www.instagram.com/sitendernarwal"
             class="social-icon"
             target="_blank"
           >
@@ -175,7 +143,6 @@
       </div>
     </footer>
 
-    <!-- Font Awesome CDN for icons -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
       integrity="sha512-fS4hp30Fz6zckmKUSn4Jz7+m0DJoM8t3aT64s1r2KuyPZsUCi9ts5NNH7c9A8qgOL2kEjmMTV64cPbGswYfrRQ=="
@@ -199,9 +166,7 @@
           )
             .then((response) => response.text())
             .then((data) => {
-              document.getElementById("form-status").innerText =
-                "Thank you for your feedback!";
-              document.getElementById("feedback-form").reset();
+              window.location.href = "thank.html";
             })
             .catch((error) => {
               document.getElementById("form-status").innerText =
