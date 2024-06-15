@@ -7,39 +7,31 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(
-    135deg,
-    #1a0577,
-    #4e006d
-  ); /* Gradient Background */
+  background: linear-gradient(135deg, #1a0577, #4e006d);
   color: #fff;
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
-  padding-top: 80px; /* Add padding to avoid overlapping with header */
-  position: relative; /* Ensure relative positioning for z-index usage */
+  padding-top: 80px;
+  position: relative;
 }
 
 /* Dark Mode */
 body.dark-mode {
   background-color: #1a1a1a;
-  color: #ddd; /* Lighter color for dark mode text */
+  color: #ddd;
 }
 
 /* Header Styles */
 header {
-  background: linear-gradient(
-    135deg,
-    #1bff4c93,
-    #0000008c
-  ); /* Initial gradient */
+  background: linear-gradient(135deg, #1bff4c93, #0000008c);
   border-radius: 10px;
   padding: 5px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  transition: background 0.5s ease-out; /* Smooth transition for gradient */
-  animation: animateHeaderGradient 5s infinite alternate; /* Animated gradient */
+  transition: background 0.5s ease-out;
+  animation: animateHeaderGradient 5s infinite alternate;
 }
 
 @keyframes animateHeaderGradient {
@@ -87,7 +79,7 @@ nav ul li a:hover {
 
 nav ul ul {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: none;
   z-index: 100;
@@ -109,7 +101,7 @@ main {
 }
 
 .intro {
-  background: linear-gradient(135deg, #ff00cc, #3333cc); /* Vibrant gradient */
+  background: linear-gradient(135deg, #ff00cc, #3333cc);
   color: #fff;
   text-align: center;
   padding: 60px 20px;
@@ -188,11 +180,11 @@ main {
   text-align: center;
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: #1a0577; /* Vibrant color */
+  color: #1a0577;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
-  animation: textShadow 0.5s infinite alternate; /* Animated text shadow */
+  animation: textShadow 0.5s infinite alternate;
 }
 
 .resources ul {
@@ -209,12 +201,12 @@ main {
   color: #333;
   font-size: 1.2em;
   transition: color 0.3s;
-  font-weight: bold; /* Bolder text */
+  font-weight: bold;
 }
 
 .resources ul li a:hover {
   color: #e50914;
-  text-shadow: 0 0 5px #e50914, 0 0 10px #e50914; /* Animated text shadow on hover */
+  text-shadow: 0 0 5px #e50914, 0 0 10px #e50914;
 }
 
 /* Footer Styles */
@@ -252,7 +244,7 @@ footer {
     text-shadow: none;
   }
   to {
-    text-shadow: 0 0 10px #e50914, 0 0 20px #e50914, 0 0 30px #e50914; /* Animated text shadow */
+    text-shadow: 0 0 10px #e50914, 0 0 20px #e50914, 0 0 30px #e50914;
   }
 }
 
@@ -364,8 +356,7 @@ footer {
 }
 
 @keyframes animateGradient {
-  0%,
-  100% {
+   0%, 100% {
     background-position: 0% 50%;
   }
   50% {
