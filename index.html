@@ -1,91 +1,1080 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JEE/NEET Prep Zone - Home</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body id="body">
-    <header>
-      <h1>JEE/NEET Prep Zone</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li>
-            <a href="#">Subjects</a>
-            <ul>
-              <li><a href="physics.html">Physics</a></li>
-              <li><a href="chemistry.html">Chemistry</a></li>
-              <li><a href="biology.html">Biology</a></li>
-              <li><a href="mathematics.html">Mathematics</a></li>
-            </ul>
-          </li>
-          <li><a href="resources.html">Resources</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li>
-            <label class="switch">
-              <input
-                type="checkbox"
-                class="slider-input"
-                id="dark-mode-toggle"
-              />
-              <span class="slider round"></span>
-            </label>
-          </li>
-        </ul>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sitender Narwal - Futuristic Portfolio</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <main>
-      <section class="intro">
-        <h2>Welcome JEE/NEET Aspirants!</h2>
-        <p>
-          This website is your one-stop shop for all your JEE/NEET preparation
-          needs. We provide comprehensive study materials, practice problems,
-          and expert tips to help you ace your exams.
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+    }
+
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 1s;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 4rem;
+      height: 4rem;
+      border: 4px solid rgba(34, 211, 238, 1);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      padding: 1.5rem;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links button {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .nav-links button:hover,
+    .nav-links button.active {
+      border-color: #22d3ee;
+      background: rgba(34, 211, 238, 0.1);
+    }
+
+    .nav-links button.active {
+      background: rgba(34, 211, 238, 0.2);
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 5rem 1.5rem;
+    }
+
+    #hero {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 64rem;
+      padding: 0 1.5rem;
+    }
+
+    .avatar-container {
+      width: 8rem;
+      height: 8rem;
+      margin: 0 auto 1.5rem;
+      border: 2px solid #22d3ee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 211, 238, 0.1);
+      backdrop-filter: blur(4px);
+      animation: pulse 2s infinite;
+    }
+
+    .avatar {
+      width: 4rem;
+      height: 4rem;
+      background: linear-gradient(to bottom right, #22d3ee, #a855f7);
+      border-radius: 50%;
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #22d3ee, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: pulse 2s infinite;
+    }
+
+    @media (min-width: 768px) {
+      h1 { font-size: 5rem; }
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: rgb(209, 213, 219);
+      margin-bottom: 2rem;
+      font-family: monospace;
+    }
+
+    @media (min-width: 768px) {
+      .subtitle { font-size: 1.5rem; }
+    }
+
+    .description {
+      font-size: 1.125rem;
+      color: rgb(156, 163, 175);
+      margin-bottom: 3rem;
+      max-width: 32rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(to right, #06b6d4, #7c3aed);
+      border-radius: 9999px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.25);
+    }
+
+    .cta-button svg {
+      margin-left: 0.5rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      transition: transform 0.3s;
+    }
+
+    .cta-button:hover svg {
+      transform: translateY(4px);
+    }
+
+    #about .content {
+      max-width: 96rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      #about .content { grid-template-columns: 1fr 1fr; }
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .about-text {
+      font-size: 1.25rem;
+      color: rgb(209, 213, 219);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .skill {
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+    }
+
+    .skill-name svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #22d3ee;
+    }
+
+    .skill-level {
+      color: #22d3ee;
+      font-family: monospace;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 0.5rem;
+      background: rgb(31, 41, 55);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(to right, #22d3ee, #a855f7);
+      border-radius: 9999px;
+      transition: width 1s ease-in-out;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 24rem;
+      background: linear-gradient(to bottom right, rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.2));
+      border-radius: 0.5rem;
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .scan-indicator {
+      text-align: center;
+    }
+
+    .scan-circle {
+      width: 6rem;
+      height: 6rem;
+      background: linear-gradient(to bottom right, #22d3ee, #a855f7);
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .scan-text {
+      color: #22d3ee;
+      font-family: monospace;
+    }
+
+    #projects {
+      padding: 5rem 1.5rem;
+    }
+
+    #projects .content {
+      max-width: 96rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    #projects h2 {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .project-card {
+      position: relative;
+      background: rgba(17, 24, 39, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid rgb(55, 65, 81);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(34, 211, 238, 0.5);
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(34, 211, 238, 0.1);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 0.1;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    .project-card:hover .project-title {
+      color: #22d3ee;
+    }
+
+    .project-description {
+      color: rgb(156, 163, 175);
+      margin-bottom: 1.5rem;
+      line-height: 1.75;
+      font-size: 0.875rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+      padding: 0.25rem 0.5rem;
+      background: rgba(34, 211, 238, 0.2);
+      color: #22d3ee;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-family: monospace;
+      border: 1px solid rgba(34, 211, 238, 0.3);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #22d3ee;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.3s;
+    }
+
+    .project-link:hover {
+      color: white;
+    }
+
+    .project-link svg {
+      width: 1rem;
+      height: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .project-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    #contact {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .contact-content {
+      max-width: 64rem;
+      padding: 0 1.5rem;
+      margin: 0 auto;
+    }
+
+    .contact-text {
+      font-size: 1.25rem;
+      color: rgb(209, 213, 219);
+      margin-bottom: 3rem;
+      max-width: 32rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .contact-card {
+      padding: 1.5rem;
+      background: rgba(17, 24, 39, 0.5);
+      backdrop-filter: blur(4px);
+      border-radius: 0.75rem;
+      border: 1px solid rgb(55, 65, 81);
+      transition: all 0.3s;
+    }
+
+    .contact-card:hover {
+      border-color: rgba(34, 211, 238, 0.5);
+      transform: scale(1.05);
+    }
+
+    .contact-icon {
+      width: 2rem;
+      height: 2rem;
+      color: #22d3ee;
+      margin: 0 auto 1rem;
+      transition: transform 0.3s;
+    }
+
+    .contact-card:hover .contact-icon {
+      transform: scale(1.1);
+    }
+
+    .contact-label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-value {
+      color: #22d3ee;
+      font-family: monospace;
+      font-size: 0.875rem;
+    }
+
+    .contact-button {
+      padding: 1rem 3rem;
+      background: linear-gradient(to right, #06b6d4, #7c3aed);
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .contact-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(34, 211, 238, 0.25);
+    }
+
+    .contact-button:hover span {
+      animation: pulse 1s infinite;
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .scroll-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      border: 1px solid rgb(107, 114, 128);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .scroll-dot:hover {
+      border-color: #22d3ee;
+    }
+
+    .scroll-dot.active {
+      background: #22d3ee;
+      border-color: #22d3ee;
+      transform: scale(1.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-screen">
+    <div class="text-center">
+      <div class="spinner"></div>
+      <div class="text-cyan-400 font-mono text-xl">INITIALIZING NEURAL LINK...</div>
+    </div>
+  </div>
+
+  <canvas id="three-canvas"></canvas>
+
+  <nav>
+    <div class="nav-content">
+      <div class="logo">SITENDER.TECH</div>
+      <div class="nav-links">
+        <button data-section="hero">HERO</button>
+        <button data-section="about">ABOUT</button>
+        <button data-section="projects">PROJECTS</button>
+        <button data-section="contact">CONTACT</button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="avatar-container">
+        <div class="avatar"></div>
+      </div>
+      <h1>SITENDER NARWAL</h1>
+      <p class="subtitle">Cybersecurity Specialist & Mathematics Computing Expert</p>
+      <p class="description">
+        IIT Delhi student specializing in cybersecurity, cryptography, and advanced algorithm development. Building secure digital solutions for tomorrow's challenges.
+      </p>
+      <a href="#about" class="cta-button">
+        ENTER THE NEXUS
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="content">
+      <div>
+        <h2>CYBER PROFILE</h2>
+        <p class="about-text">
+          Mathematics & Computing student at IIT Delhi with expertise in cybersecurity, cryptography, and advanced algorithm development. Passionate about building secure systems and solving complex computational problems.
         </p>
-      </section>
+        <div class="skills">
+          <div class="skill">
+            <div class="skill-header">
+              <div class="skill-name">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                  <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                </svg>
+                Cybersecurity
+              </div>
+              <span class="skill-level">95%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-header">
+              <div class="skill-name">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+                Cryptography
+              </div>
+              <span class="skill-level">88%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 88%"></div>
+            </div>
+          </div>
+          <div class="skill">
+            <div class="skill-header">
+              <div class="skill-name">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+                Algorithm Development
+              </div>
+              <span class="skill-level">92%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" style="width: 92%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="scan-indicator">
+          <div class="scan-circle"></div>
+          <p class="scan-text">CYBER SCAN ACTIVE</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section class="subjects">
-        <!-- <h3>Key Subjects</h3> -->
-        <div class="subject physics">
-          <a href="physics.html">
-            <h4>Physics</h4>
+  <section id="projects">
+    <div class="content">
+      <h2>DIGITAL PROJECTS</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-overlay" style="background: linear-gradient(to bottom right, #22d3ee, #3b82f6)"></div>
+          <h3 class="project-title">Typing Speed Test</h3>
+          <p class="project-description">
+            Interactive typing test website with multiple difficulty levels and progress tracking for skill improvement
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="project-link">
+            <span>VIEW PROJECT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
           </a>
         </div>
-        <div class="subject chemistry">
-          <a href="chemistry.html">
-            <h4>Chemistry</h4>
+        <div class="project-card">
+          <div class="project-overlay" style="background: linear-gradient(to bottom right, #a855f7, #ec4899)"></div>
+          <h3 class="project-title">Cargo Management System</h3>
+          <p class="project-description">
+            Advanced cargo management system using AVL tree for efficient operations like insertion, deletion, and searching
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Data Structures</span>
+            <span class="tech-tag">AVL Tree</span>
+            <span class="tech-tag">C++</span>
+          </div>
+          <a href="#" class="project-link">
+            <span>VIEW PROJECT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
           </a>
         </div>
-        <div class="subject biology">
-          <a href="biology.html">
-            <h4>Biology</h4>
+        <div class="project-card">
+          <div class="project-overlay" style="background: linear-gradient(to bottom right, #22c55e, #2dd4bf)"></div>
+          <h3 class="project-title">GS_V1 Note Taking App</h3>
+          <p class="project-description">
+            Android application for text and handwritten notes with drawing tools, built with optimized performance
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Android SDK</span>
+            <span class="tech-tag">Mobile Dev</span>
+          </div>
+          <a href="#" class="project-link">
+            <span>VIEW PROJECT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
           </a>
         </div>
-        <div class="subject mathematics">
-          <a href="maths.html">
-            <h4>Mathematics</h4>
+        <div class="project-card">
+          <div class="project-overlay" style="background: linear-gradient(to bottom right, #eab308, #f97316)"></div>
+          <h3 class="project-title">Classic Games Collection</h3>
+          <p class="project-description">
+            Collection of classic games including Snake (Python), Tic-Tac-Toe (Python), and Flappy Bird (Java)
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Game Development</span>
+          </div>
+          <a href="#" class="project-link">
+            <span>VIEW PROJECT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
           </a>
         </div>
-      </section>
+        <div class="project-card">
+          <div class="project-overlay" style="background: linear-gradient(to bottom right, #ec4899, #ef4444)"></div>
+          <h3 class="project-title">Candy Crush Clone</h3>
+          <p class="project-description">
+            Web-based clone of popular Candy Crush game with match-three mechanics and scoring system
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS</span>
+          </div>
+          <a href="#" class="project-link">
+            <span>VIEW PROJECT</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section class="resources">
-        <h3>Valuable Resources</h3>
-        <ul>
-          <li><a href="#">NCERT Books Online</a></li>
-          <li><a href="#">JEE/NEET Mock Tests</a></li>
-          <li><a href="#">Online Educational Videos</a></li>
-        </ul>
-      </section>
-    </main>
+  <section id="contact">
+    <div class="contact-content">
+      <h2>ESTABLISH CONNECTION</h2>
+      <p class="contact-text">
+        Ready to collaborate on cybersecurity projects, algorithm development, or innovative software solutions? Let's connect and build secure digital solutions together.
+      </p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <path d="M22 6l-10 7L2 6"/>
+          </svg>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">sitender@sitendernarwal.tech</p>
+        </div>
+        <div class="contact-card">
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 01-6-3.22c.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08a7.2 7.2 0 01-6 3.22z"/>
+          </svg>
+          <p class="contact-label">GitHub</p>
+          <p class="contact-value">github.com/Sitendernarwal</p>
+        </div>
+        <div class="contact-card">
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-value">linkedin.com/in/sitendernarwal</p>
+        </div>
+      </div>
+      <a href="#" class="contact-button">
+        <span>INITIATE CONTACT PROTOCOL</span>
+      </a>
+    </div>
+  </section>
 
-    <footer>
-      <p>JEE/NEET Prep Zone</p>
-    </footer>
+  <div class="scroll-indicator">
+    <button class="scroll-dot active" data-section="hero"></button>
+    <button class="scroll-dot" data-section="about"></button>
+    <button class="scroll-dot" data-section="projects"></button>
+    <button class="scroll-dot" data-section="contact"></button>
+  </div>
 
-    <script src="script.js"></script>
-    <!-- Script for Dark Mode Toggle -->
-  </body>
+  <script>
+    // Three.js Setup
+    const canvas = document.getElementById('three-canvas');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Particles
+    const particleCount = 1000;
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+    
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      positions[i] = (Math.random() - 0.5) * 20;
+      positions[i + 1] = (Math.random() - 0.5) * 20;
+      positions[i + 2] = (Math.random() - 0.5) * 20;
+      
+      colors[i] = Math.random() * 0.5 + 0.5;
+      colors[i + 1] = Math.random() * 0.5 + 0.8;
+      colors[i + 2] = 1;
+    }
+
+    const particleGeometry = new THREE.BufferGeometry();
+    particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const particleMaterial = new THREE.PointsMaterial({
+      size: 0.05,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending
+    });
+
+    const particles = new THREE.Points(particleGeometry, particleMaterial);
+    scene.add(particles);
+
+    // Geometric Shapes
+    const shapes = [];
+    const geometries = [
+      new THREE.BoxGeometry(0.5, 0.5, 0.5),
+      new THREE.OctahedronGeometry(0.3),
+      new THREE.TetrahedronGeometry(0.4),
+      new THREE.IcosahedronGeometry(0.3),
+      new THREE.DodecahedronGeometry(0.3),
+      new THREE.TorusGeometry(0.3, 0.1, 8, 16),
+      new THREE.ConeGeometry(0.3, 0.6, 8),
+      new THREE.SphereGeometry(0.3, 16, 16)
+    ];
+
+    for (let i = 0; i < 12; i++) {
+      const geometry = geometries[i % geometries.length];
+      const material = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(0.6 + i * 0.08, 0.8, 0.6),
+        transparent: true,
+        opacity: 0.4,
+        wireframe: true
+      });
+      
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15
+      );
+      
+      mesh.userData = {
+        rotationSpeedX: (Math.random() - 0.5) * 0.02,
+        rotationSpeedY: (Math.random() - 0.5) * 0.02,
+        rotationSpeedZ: (Math.random() - 0.5) * 0.02,
+        floatSpeed: Math.random() * 0.01 + 0.005,
+        floatOffset: Math.random() * Math.PI * 2
+      };
+      
+      shapes.push(mesh);
+      scene.add(mesh);
+    }
+
+    // Helix
+    const helixGeometry = new THREE.BufferGeometry();
+    const helixPoints = [];
+    const helixColors = [];
+    
+    for (let i = 0; i < 200; i++) {
+      const angle = (i / 200) * Math.PI * 8;
+      const radius = 1.5;
+      const x = Math.cos(angle) * radius;
+      const y = (i / 200) * 8 - 4;
+      const z = Math.sin(angle) * radius;
+      
+      helixPoints.push(x, y, z);
+      
+      const hue = (i / 200) * 0.3 + 0.5;
+      const color = new THREE.Color().setHSL(hue, 0.8, 0.7);
+      helixColors.push(color.r, color.g, color.b);
+    }
+    
+    helixGeometry.setAttribute('position', new THREE.Float32BufferAttribute(helixPoints, 3));
+    helixGeometry.setAttribute('color', new THREE.Float32BufferAttribute(helixColors, 3));
+    
+    const helixMaterial = new THREE.PointsMaterial({
+      size: 0.1,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+    
+    const helix = new THREE.Points(helixGeometry, helixMaterial);
+    helix.position.set(3, 0, -2);
+    scene.add(helix);
+    shapes.push(helix);
+
+    // Grid
+    const gridGeometry = new THREE.PlaneGeometry(10, 10, 20, 20);
+    const gridMaterial = new THREE.MeshBasicMaterial({
+      color: 0x00ffff,
+      transparent: true,
+      opacity: 0.1,
+      wireframe: true
+    });
+    const grid = new THREE.Mesh(gridGeometry, gridMaterial);
+    grid.rotation.x = -Math.PI / 2;
+    grid.position.y = -5;
+    scene.add(grid);
+    shapes.push(grid);
+
+    // Data Cubes
+    const dataCubes = [];
+    for (let i = 0; i < 8; i++) {
+      const cubeGeometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+      const cubeMaterial = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(0.18, 1, 0.5 + Math.random() * 0.3),
+        transparent: true,
+        opacity: 0.6
+      });
+      
+      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+      cube.position.set(
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 8
+      );
+      
+      cube.userData = {
+        originalY: cube.position.y,
+        speed: Math.random() * 0.02 + 0.01
+      };
+      
+      dataCubes.push(cube);
+      scene.add(cube);
+      shapes.push(cube);
+    }
+
+    camera.position.z = 5;
+
+    // Animation loop
+    let animationRef;
+    function animate() {
+      animationRef = requestAnimationFrame(animate);
+      
+      const time = Date.now() * 0.001;
+      
+      // Animate particles
+      particles.rotation.x = time * 0.1;
+      particles.rotation.y = time * 0.05;
+      
+      // Animate shapes with individual properties
+      shapes.forEach((shape, i) => {
+        if (shape.userData && shape.userData.rotationSpeedX) {
+          // Animate geometric shapes
+          shape.rotation.x += shape.userData.rotationSpeedX;
+          shape.rotation.y += shape.userData.rotationSpeedY;
+          shape.rotation.z += shape.userData.rotationSpeedZ;
+          shape.position.y += Math.sin(time * shape.userData.floatSpeed + shape.userData.floatOffset) * 0.01;
+        } else if (shape.geometry.type === 'PlaneGeometry') {
+          // Animate grid
+          shape.material.opacity = 0.1 + Math.sin(time * 2) * 0.05;
+        } else if (shape.geometry.type === 'BoxGeometry' && shape.userData.originalY !== undefined) {
+          // Animate data cubes
+          shape.position.y = shape.userData.originalY + Math.sin(time * shape.userData.speed + i) * 0.5;
+          shape.rotation.x += time * 0.5;
+          shape.rotation.y += time * 0.3;
+          
+          // Pulse effect
+          const scale = 1 + Math.sin(time * 3 + i) * 0.1;
+          shape.scale.set(scale, scale, scale);
+        } else if (shape.isPoints) {
+          // Animate helix
+          shape.rotation.y = time * 0.5;
+          shape.position.y = Math.sin(time * 0.3) * 0.5;
+        } else {
+          // Default animation for other shapes
+          shape.rotation.x = time * (0.5 + i * 0.1);
+          shape.rotation.y = time * (0.3 + i * 0.05);
+          shape.position.y = Math.sin(time + i) * 0.5;
+        }
+      });
+      
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Handle resize
+    function handleResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    
+    window.addEventListener('resize', handleResize);
+
+    // Loading Screen
+    const loadingScreen = document.querySelector('.loading-screen');
+    setTimeout(() => {
+      loadingScreen.classList.add('hidden');
+    }, 1000);
+
+    // Navigation and Scroll Indicator
+    let currentSection = 0;
+    const sectionIds = ['hero', 'about', 'projects', 'contact'];
+    const navButtons = document.querySelectorAll('.nav-links button');
+    const scrollDots = document.querySelectorAll('.scroll-dot');
+
+    function setSection(index) {
+      currentSection = index;
+      navButtons.forEach(btn => btn.classList.remove('active'));
+      scrollDots.forEach(dot => dot.classList.remove('active'));
+      navButtons[index].classList.add('active');
+      scrollDots[index].classList.add('active');
+      document.getElementById(sectionIds[index]).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    navButtons.forEach((btn, index) => {
+      btn.addEventListener('click', () => setSection(index));
+    });
+
+    scrollDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => setSection(index));
+    });
+
+    // Intersection Observer for Section Detection
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = sectionIds.indexOf(entry.target.id);
+          if (index !== -1) {
+            currentSection = index;
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            scrollDots.forEach(dot => dot.classList.remove('active'));
+            navButtons[index].classList.add('active');
+            scrollDots[index].classList.add('active');
+          }
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    sectionIds.forEach(id => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+
+    // Cleanup
+    window.addEventListener('unload', () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationRef) cancelAnimationFrame(animationRef);
+      observer.disconnect();
+    });
+  </script>
+</body>
 </html>
